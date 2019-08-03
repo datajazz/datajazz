@@ -1,6 +1,6 @@
 import pandas as pd
 
-def timeoftime(df, drop_original=True, measures=["hour", "dayofweek", "weekofyear"], infer_datetime_format=True, utc=True):
+def timeoftime(df, drop_original=True, measures=["hour", "dayofweek", "weekofyear", "month"], infer_datetime_format=True, utc=True):
     for col in df.select_dtypes(include='datetime64').columns:
         for m in measures:
             df[f"{col}_{m}"] = getattr(pd.to_datetime(df[col], infer_datetime_format=infer_datetime_format, utc=utc).dt, m)
